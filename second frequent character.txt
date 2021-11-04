@@ -1,0 +1,30 @@
+// 2 nd frequent character
+def Sort(sub_li):
+    l = len(sub_li)
+    for i in range(0, l):
+        for j in range(0, l-i-1):
+            if (sub_li[j][1] > sub_li[j + 1][1]):
+                tempo = sub_li[j]
+                sub_li[j]= sub_li[j + 1]
+                sub_li[j + 1]= tempo
+    return sub_li
+N = input("enter string ")
+l = []
+sub_li = []
+o = []
+flag = 0
+result = 0
+l = list(N)
+for i in l:
+    c = l.count(i)
+    sub_li.append((i,c))
+    o.append(c)
+result = all(element == o[0] for element in o)
+if (result):
+   #print("All the elements are Equal")
+   print("the second frequent character cannot be determined ")
+else:
+   #print("All Elements are not equal")
+   sub_li = list(set(sub_li))
+   Sort(sub_li)
+   print("the second frequent character is  ",sub_li[(len(sub_li))-2][0])
